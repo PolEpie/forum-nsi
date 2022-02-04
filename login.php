@@ -35,12 +35,12 @@
             <div class="flex-center">
                 <h2>Connexion</h2>
                 <div>
-                    <label for="uname"><b>Nom d'Utilisateur</b></label>
+                    <label for="username"><b>Nom d'Utilisateur</b></label>
                     <input type="text" placeholder="Votre nom d'utilisateur" name="username" required <?php if (isset($_GET['u'])) {echo 'value="'.$_GET['u'].'"';} ?>>
                 </div>
 
                 <div>
-                    <label for="psw"><b>Mot de passe</b></label>
+                    <label for="password"><b>Mot de passe</b></label>
                     <input type="password" placeholder="Votre mot de passe" name="password" required>
                 </div>
 

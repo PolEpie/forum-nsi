@@ -11,6 +11,11 @@ if (count($query_username->fetchAll()) > 0) {
 }
 
 MySQLQuery("INSERT INTO users (username, password) VALUES (?,?);", $username, hash("md5", $_POST["password"]));
+$query_username = MySQLQuery("select * from users where username=?;", $username);
+$result = $query_username->fetchAll();
+
+$_SESSION['username'] = $username;
+$_SESSION['iduser'] = $result[0]['id'];
 
 header("Location: ../index.php");
 exit;

@@ -35,39 +35,98 @@
     </header>
 
     <div class="container">
+
+        <?php
+        if (isset($_GET['err']) and $_GET['err'] == 1) {
+            echo '<div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+                    Le sujet exite déja
+                </div>';
+        } elseif (isset($_GET['err']) and $_GET['err'] == 2) {
+            echo '<div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+                    Merci de vous connecter
+                </div>';
+        }
+        ?>
+
+        <button id="myBtn" class="button">Nouveau sujet</button>
+
+        <!-- The Modal -->
+        <div id="modal-new-topic" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="form/add-topic.php" method="post" class="flex-center">
+                    <h3>Nouveau sujet</h3>
+                    <div>
+                        <label for="topic"><b>Nom du Sujet</b></label>
+                        <input type="text" placeholder="Ex: La NSI" name="topic" required>
+                    </div>
+                    <button type="submit">Créer</button>
+                </form>
+            </div>
+
+        </div>
+
         <table>
             <tr>
                 <th>Sujet</th>
                 <th>Dernier Message</th>
                 <th>Date du dernier message</th>
             </tr>
-            <tr>
-                <td>La NSI</td>
-                <td>Test</td>
-                <td>Hier à 20h</td>
-            </tr>
-            <tr>
-                <td>La NSI</td>
-                <td>Test</td>
-                <td>Hier à 20h</td>
-            </tr>
-            <tr>
-                <td>La NSI</td>
-                <td>Test</td>
-                <td>Hier à 20h</td>
-            </tr>
-            <tr>
-                <td>La NSI</td>
-                <td>Test</td>
-                <td>Hier à 20h</td>
-            </tr>
-            <tr>
-                <td>La NSI</td>
-                <td>Test</td>
-                <td>Hier à 20h</td>
-            </tr>
+            <?php
+                require_once "database.php";
+                $query_topics = MySQLQuery("select * from topics;");
+                $result = $query_topics->fetchAll();
+                if (count($result) > 0) {
+                    foreach ($result as $topic) {
+                        $name = $topic["name"];
+                        echo '<tr onclick="document.location = \'messages.php?topic=' . $name . '\';">
+                            <td>'.$name.'</td>
+                            <td></td>
+                            <td></td>
+                        </tr>';
+                    }
+                } else {
+                    echo '<tr>
+                        <td></td>
+                        <td>Aucun sujet posté</td>
+                        <td></td>
+                    </tr>';
+                }
+            ?>
         </table>
     </div>
-    
+
+
+    <script>
+        var modal = document.getElementById("modal-new-topic");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>

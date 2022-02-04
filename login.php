@@ -23,12 +23,20 @@
     </header>
 
     <div class="container">
-        <form action="action_page.php" method="post">
+        <?php
+        if (isset($_GET['err']) and $_GET['err'] == 1) {
+            echo '<div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+                    Le compte n\'existe pas ou le mot de passe n\'est pas bon.
+                </div>';
+        }
+        ?>
+        <form action="form/login.php" method="post">
             <div class="flex-center">
                 <h2>Connexion</h2>
                 <div>
                     <label for="uname"><b>Nom d'Utilisateur</b></label>
-                    <input type="text" placeholder="Votre nom d'utilisateur" name="username" required>
+                    <input type="text" placeholder="Votre nom d'utilisateur" name="username" required <?php if (isset($_GET['u'])) {echo 'value="'.$_GET['u'].'"';} ?>>
                 </div>
 
                 <div>

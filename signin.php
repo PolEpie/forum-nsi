@@ -23,12 +23,20 @@
     </header>
 
     <div class="container">
-        <form action="signin-form.php" method="post">
+        <?php
+            if (isset($_GET['err']) and $_GET['err'] == 1) {
+                echo '<div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+                    Ce nom d\'utilisateur est déja utilisé
+                </div>';
+            }
+        ?>
+        <form action="form/signin.php" method="post">
             <div class="flex-center">
                 <h2>Inscription</h2>
                 <div>
                     <label for="uname"><b>Nom d'Utilisateur</b></label>
-                    <input type="text" placeholder="Entrer un nom d'utilisateur" name="username" required>
+                    <input type="text" placeholder="Entrer un nom d'utilisateur" name="username" required <?php if (isset($_GET['u'])) {echo 'value="'.$_GET['u'].'"';} ?>>
                 </div>
 
                 <div>

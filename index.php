@@ -18,10 +18,19 @@
     <script src="https://kit.fontawesome.com/54f3b59379.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <?php
+        session_start();
+    ?>
     <header>
         <a href="index.php"><h1>Forum</h1></a>
         <div>
-            <a href="login.php">Connexion / Inscription<i class="fas fa-sign-in-alt"></i></a>
+            <?php
+                if (isset($_SESSION['username'])) {
+                    echo '<a href="logout.php">' . $_SESSION['username'] . ' | Déconnexion<i class="fas fa-sign-out-alt"></i></a>';
+                } else {
+                    echo '<a href="login.php">Connexion / Inscription<i class="fas fa-sign-in-alt"></i></a>';
+                }
+            ?>
         </div>
     </header>
 

@@ -5,5 +5,5 @@ create table if not exists users
     password varchar(255) not null,
     constraint users_username_uindex
     unique (username)
-    );
+);
 

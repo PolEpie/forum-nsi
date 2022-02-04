@@ -1,0 +1,89 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    box-shadow: 0px 1px 5px black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+header div a {
+    grid-column: 2 / 3;
+    margin-right: 30px;
+}
+
+header i {
+    margin-left: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header a {
+    grid-column: 2 / 3;
+    text-align: center;
+}
+
+header div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.container {
+    margin-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+table tr {
+    text-align: center;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.425);
+}
+
+.button {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+    background-color: rgb(239, 239, 239);
+}
+
+table th:last-child, table td:last-child {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex-center input {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 100;
+}
